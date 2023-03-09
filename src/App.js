@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import Background from "./Background/Background";
+import Overlay from "./Overlay/Overlay";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const siteBg = useRef();
+
+    useEffect(() => {
+        siteBg.current.height = "500";
+    }, []);
+
+    return (
+        <>
+            <Canvas camera={{ position: [0, 0, 1] }} ref={siteBg}>
+                <Background />
+            </Canvas>
+            <Overlay />
+        </>
+    );
 }
 
 export default App;
